@@ -6,25 +6,37 @@
     <title>Document</title>
 </head>
 <body>
+<<<<<<< HEAD
     <h1>직원 검색 "{{txtsearch}}"</h1>
     <form action="/search" method="POST">
         <input type="text" name="txtsearch" placeholder="찾고자 하는 직원명을 입력하세요." style="width:300px;" value="{{txtsearch}}">
+=======
+    <h1>직원 검색"{{txtsearch}}"</h1>
+    <form action="/search" method="POST">
+        <input type="text" name="txtsearch" placeholder="찾고자 하는 직원명을 입력하세요" style="width: 300px;" value="{{txtsearch}}">
+>>>>>>> d8b2d830b0d485e921adebe1783698e47dfdd1e1
         <input type="submit" value="검색">
     </form>
 
     <h1>직원 리스트</h1>
     {% for row in employees %}
+<<<<<<< HEAD
         {{row.userid}},
         {{row.username}},
         {{row.email}}
         {{row.tel}}
         {{row.position}}
         <input type="button" value="삭제" onclick="fDel({{row.userid}})">
+=======
+        {{row.userid}},{{row.username}},{{row.email}},{{row.tel}},{{row.position}}
+        <input type="button" value="삭제" onclick="fDel('{{row.userid}}')">
+>>>>>>> d8b2d830b0d485e921adebe1783698e47dfdd1e1
         <input type="button" value="수정" onclick="fEdit('{{row.userid}}','{{row.username}}','{{row.email}}','{{row.tel}}','{{row.position}}')">
         <input type="button" value="말하기" onclick="fSound()">
         <br>
     {% endfor %}
 
+<<<<<<< HEAD
 <h1>직원추가</h1>    
 <form action="/insert" method="POST">
     직원명:<input type="text" name="username"><br>
@@ -58,5 +70,44 @@ function fSound(){
     location.href = "/playmp3";
 }
 </script>
+=======
+    <h1>직원 추가</h1>
+    <form action="/insert" method="POST">
+        직원명:<input type="text" name="username"><br>
+        이메일:<input type="text" name="email"><br>
+        전화번호:<input type="text" name="tel"><br>
+        직위명:<input type="text" name="position"><br>
+        <input type="submit" value="저장">
+    </form>
+
+    <h1>직원 수정</h1>
+    <form name ="frmEdit" action="/update" method="POST">
+        직원 ID:<input type="text" name="userid"><br>
+        직원명:<input type="text" name="username"><br>
+        이메일:<input type="text" name="email"><br>
+        전화번호:<input type="text" name="tel"><br>
+        직위명:<input type="text" name="position"><br>
+        <input type="submit" value="수정하기">
+    </form>
+
+    <script>
+        function fDel(uid){
+            if(confirm(uid + ' 정말로 삭제하시겠습니까?')==false) return;
+            location.href = "/delete/" + uid;
+        }
+        function fEdit(userid,username,email,tel,position){
+            var frm = document.frmEdit;
+            frm.userid.value = userid;
+            frm.username.value = username;
+            frm.email.value = email;
+            frm.tel.value = tel;
+            frm.position.value = position;
+        }
+        function fSound(){
+            location.href = "/playmp3";
+        }
+    </script>
+
+>>>>>>> d8b2d830b0d485e921adebe1783698e47dfdd1e1
 </body>
 </html>
