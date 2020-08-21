@@ -1,5 +1,4 @@
-from gtts import gTTS
-from playsound import playsound
+#-*- coding: utf-8 -*-
 from flask import Flask, render_template,request,redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
 
@@ -15,11 +14,13 @@ class Employee(db.Model):
     username = db.Column(db.String(100))
     email = db.Column(db.String(200))
     tel = db.Column(db.String(50))
+    position = db.Column(db.String(50))    
 
-    def __init__(self, username, email, tel):
+    def __init__(self, username, email, tel,position):
         self.username = username
         self.email = email
         self.tel = tel
+        self.position = position
 
 @app.route('/')
 def index():
@@ -32,8 +33,9 @@ def insert():
         username = request.form['username']
         email = request.form['email']
         tel = request.form['tel']
+        position = request.form['position']
 
-        insertUser = Employee(username,email,tel)
+        insertUser = Employee(username,email,tel,position)
         db.session.add(insertUser)
         db.session.commit()
 
@@ -54,6 +56,7 @@ def update():
         updateUser.username = request.form['username']
         updateUser.email = request.form['email']
         updateUser.tel = request.form['tel']
+        updateUser.position = request.form['position']
         db.session.commit()
         return redirect(url_for('index'))
 
