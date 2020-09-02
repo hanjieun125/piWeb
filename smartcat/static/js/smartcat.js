@@ -4,14 +4,24 @@
 //   alert(formData);
 // });
 
+<<<<<<< HEAD
 function fBbs_Save_Add () {
   var formData = app.form.convertToData('#form-bbs-save');
+=======
+function fBbsWriteSave () {
+  var formData = app.form.convertToData('#form-bbs-save');
+	console.log (formData);
+>>>>>>> f8b68647842be49d0d50ae21c42dca9c85362dca
 	if (formData.category == '') {
 		app.dialog.alert ('카테로기명을 입력하세요.', '입력오류');
 	} else if (formData.word == '') {
 		app.dialog.alert ('단어를 입력하세요.', '입력오류');
 	} else {
+<<<<<<< HEAD
     app.request.post ('/bbs_save_add', formData, function (data) {
+=======
+    app.request.post ('/bbs_insert', formData, function (data) {
+>>>>>>> f8b68647842be49d0d50ae21c42dca9c85362dca
       console.log(data);
       discoverView.router.back({force : true, ignoreCache : true, reload : true});
     });
